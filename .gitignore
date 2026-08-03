@@ -1,0 +1,129 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# =========================
+# Virtual Environments
+# =========================
+.venv/
+venv/
+.env/
+ENV/
+Lib/
+Include/
+Scripts/
+pyvenv.cfg
+
+# =========================
+# Environment & Secrets
+# =========================
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs & Temporary Files
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# ML Models & Artifacts
+# =========================
+*.h5
+*.keras
+*.pkl
+*.joblib
+*.onnx
+*.bin
+*.safetensors
+
+# =========================
+# Datasets & Local Data
+# =========================
+*.csv
+*.xlsx
+*.xls
+*.jsonl
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Vector DB / Storage
+# =========================
+storage/
+chroma/
+vectorstore/
+
+# =========================
+# Node / React / Vite
+# =========================
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+*.lock
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Cache
+# =========================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# =========================
+# Coverage
+# =========================
+.coverage
+htmlcov/
+coverage.xml
+
+# =========================
+# Build / Generated Files
+# =========================
+*.egg-info/
