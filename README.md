@@ -1,153 +1,613 @@
-# Multimodal RAG
+# 📚 Multimodal RAG
 
-A production-ready Multimodal Retrieval-Augmented Generation system. It ingests
-PDF documents — extracting plain text, scanned/OCR text, tables, embedded
-images, charts/graphs, and equations — embeds everything into a single FAISS
-vector index, and answers user questions over that content via a Groq-hosted
-LLM, with specialized agents for translation, summarization, and
-image/graph-specific queries.
+<div align="center">
 
-## Architecture
+### **🚀 Production-Ready Multimodal Retrieval-Augmented Generation System**
 
+*Built with RAG • Computer Vision • OCR • Semantic Search • Vision LLMs • Streaming AI*
+
+<p>
+
+<img src="https://img.shields.io/badge/RAG-Multimodal-blue?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi"/>
+<img src="https://img.shields.io/badge/React-TypeScript-61DAFB?style=for-the-badge&logo=react"/>
+<img src="https://img.shields.io/badge/Groq-LLM-orange?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/FAISS-Vector%20Database-purple?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/PDF-AI-red?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/OCR-Tesseract-success?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/PyMuPDF-Document%20Parsing-blue?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Sentence%20Transformers-Embeddings-yellow?style=for-the-badge"/>
+
+</p>
+
+---
+
+### ⭐ An Enterprise-Ready Multimodal RAG system that understands **PDFs, Tables, Images, Charts, Graphs, OCR Text, and Equations**, retrieves the most relevant knowledge using semantic search, and generates grounded AI responses with source citations.
+
+</div>
+
+---
+
+# ✨ Why This Project Stands Out
+
+Most RAG projects only retrieve plain text.
+
+**Multimodal RAG** goes much further by extracting and understanding every meaningful component inside a PDF—including scanned pages, embedded images, tables, charts, graphs, and mathematical equations—and combining them into a unified semantic knowledge base.
+
+Instead of treating a document as plain text, this system understands the complete document context.
+
+## 🎯 Highlights
+
+✅ Production-Ready Multimodal RAG
+
+✅ Intelligent PDF Ingestion Pipeline
+
+✅ OCR for Scanned Documents
+
+✅ Table Extraction
+
+✅ Image Extraction
+
+✅ Chart & Graph Understanding
+
+✅ Equation Recognition
+
+✅ Vision LLM Integration
+
+✅ FAISS Semantic Search
+
+✅ Source-Cited Answers
+
+✅ Specialized AI Agents
+
+✅ Translation Support
+
+✅ AI Summarization
+
+✅ Streaming Responses
+
+✅ CPU Friendly
+
+---
+
+# 🧠 System Architecture
+
+```text
+                     PDF Upload
+
+                          │
+
+                Intelligent Ingestion
+
+                          │
+
+        ┌─────────┬─────────┬─────────┬─────────┐
+
+        ▼         ▼         ▼         ▼
+
+     Text      Tables     Images   Equations
+
+        │         │         │         │
+
+        └─────────┴─────────┴─────────┘
+
+                    Chunking Engine
+
+                          │
+
+                 Sentence Embeddings
+
+                          │
+
+                    FAISS Vector Store
+
+                          │
+
+────────────────────────────────────────────────────
+
+                     User Question
+
+                          │
+
+                     Query Embedding
+
+                          │
+
+                 Semantic Retrieval
+
+                          │
+
+                     Agent Router
+
+                          │
+
+      ┌────────────┬────────────┬────────────┬────────────┐
+
+      ▼            ▼            ▼            ▼
+
+Multimodal   Summarization   Translation   Fallback
+
+    Agent        Agent          Agent       Agent
+
+                          │
+
+                          ▼
+
+                 Grounded AI Response
+
+                + Source References
 ```
-PDF Upload → Ingestion Pipeline → Chunking → Embeddings → FAISS Index
-                                                              │
-User Query → Retriever (FAISS + DB) → Agent Router → LLM → Answer + Sources
-                                          │
-                     ┌───────────┬────────┴────────┬───────────────┐
-                     ▼           ▼                 ▼               ▼
-               Multimodal   Summarization     Translation      Fallback
-                 Agent         Agent            Agent           Agent
+
+---
+
+# 🤖 Specialized AI Agents
+
+| Agent                  | Responsibility                                                 |
+| ---------------------- | -------------------------------------------------------------- |
+| 🧠 Multimodal Agent    | Understands images, charts, graphs, and visual content         |
+| 📄 Summarization Agent | Generates concise document and section summaries               |
+| 🌍 Translation Agent   | Translates final responses into the requested language         |
+| 🛡 Fallback Agent      | Prevents hallucinations when relevant knowledge is unavailable |
+
+---
+
+# 🚀 Intelligent PDF Processing Pipeline
+
+Every uploaded PDF is processed through an advanced ingestion workflow.
+
+---
+
+## 📄 Text Extraction
+
+* PyMuPDF
+* Native PDF parsing
+* Fast text extraction
+* Layout preservation
+
+---
+
+## 🔍 OCR Pipeline
+
+Automatically detects scanned pages.
+
+Uses
+
+* Tesseract OCR
+* Image rendering
+* Text reconstruction
+
+---
+
+## 📊 Table Extraction
+
+Tables are extracted using **pdfplumber** and converted into structured Markdown, ensuring that rows, columns, and relationships remain searchable after chunking.
+
+---
+
+## 🖼 Image Understanding
+
+The system extracts embedded images and performs:
+
+* OCR on images
+* Caption generation
+* Visual understanding
+* Metadata extraction
+
+---
+
+## 📈 Chart & Graph Intelligence
+
+Automatically identifies charts and graphs.
+
+Then
+
+* Generates captions
+* Understands visual trends
+* Extracts semantic meaning
+* Enables graph-specific question answering
+
+---
+
+## ➗ Equation Processing
+
+Equation-like content is detected heuristically.
+
+The LLM reconstructs mathematical expressions into readable forms so they become searchable.
+
+---
+
+# ⚡ Retrieval Pipeline
+
+```text
+User Question
+
+↓
+
+Embedding Generation
+
+↓
+
+Semantic Search
+
+↓
+
+Top-K Retrieval
+
+↓
+
+Agent Routing
+
+↓
+
+Specialized Processing
+
+↓
+
+Grounded LLM Generation
+
+↓
+
+Source Citations
+
+↓
+
+Translation (Optional)
+
+↓
+
+Final Response
 ```
 
-**Ingestion pipeline** (`app/ingestion/pipeline.py`) per PDF page:
-1. Extract plain text (PyMuPDF). If a page is text-sparse (likely scanned),
-   render it to an image and run Tesseract OCR as a fallback.
-2. Extract tables (`pdfplumber`) and serialize them to markdown so structure
-   survives chunking/embedding.
-3. Extract embedded raster images; OCR each one, and if it looks like a
-   chart/graph, additionally caption it with a vision LLM call.
-4. Detect equation-like lines heuristically and reconstruct them with the LLM.
-5. Chunk all text content (sentence-aware, overlapping), embed with
-   `sentence-transformers`, and store vectors in FAISS + metadata rows in the DB.
+---
 
-**RAG pipeline** (`app/rag/pipeline.py`) per query:
-1. Embed the query and retrieve top-k similar chunks from FAISS (optionally
-   filtered to specific document IDs).
-2. Route to a specialized agent based on the query and retrieved chunk types:
-   - No relevant chunks → **fallback agent** (cautious, no hallucination).
-   - Query mentions a chart/image and a matching image chunk was retrieved →
-     **multimodal agent** (re-runs vision inference directly on that image).
-   - Query asks for a summary → **summarization agent**.
-   - Otherwise → default **RAG generation** with numbered source citations.
-3. If a target language was requested, the final answer is passed through the
-   **translation agent**.
+# 🚀 Technology Stack
 
-Both the REST (`/api/chat`) and WebSocket (`/ws/chat/{session_id}`) endpoints
-share this exact pipeline, so streaming and non-streaming responses are
-always consistent.
+| Layer            | Technology                |
+| ---------------- | ------------------------- |
+| Backend          | FastAPI                   |
+| Frontend         | React + TypeScript + Vite |
+| Database         | SQLite / PostgreSQL       |
+| ORM              | SQLAlchemy                |
+| PDF Parsing      | PyMuPDF                   |
+| Table Extraction | pdfplumber                |
+| OCR              | Tesseract                 |
+| Embeddings       | Sentence Transformers     |
+| Vector Database  | FAISS                     |
+| Vision AI        | Groq Vision               |
+| LLM              | Groq Llama 3.3            |
+| WebSocket        | FastAPI WebSockets        |
+| Testing          | PyTest                    |
 
-## Tech stack
+---
 
-| Layer          | Choice                                  | Why |
-|----------------|------------------------------------------|-----|
-| API framework  | FastAPI + Uvicorn                        | Async-first, native WebSocket support |
-| Database       | SQLAlchemy (async) + SQLite (swap-in Postgres via `DATABASE_URL`) | Lightweight default, production-swappable |
-| PDF parsing    | PyMuPDF (`fitz`)                         | Fast, reliable text + image extraction |
-| Table parsing  | `pdfplumber`                             | Good structural table extraction without native deps |
-| OCR            | Tesseract via `pytesseract`              | Mature, free, works offline |
-| Embeddings     | `sentence-transformers` (MiniLM-L6-v2)   | Small, fast, strong general-purpose retrieval quality |
-| Vector store   | FAISS (`IndexFlatIP` over normalized vectors = cosine similarity) | Simple, exact, fast enough for single-node deployments |
-| LLM            | Groq API (Llama 3.3 70B + vision model)  | Very low latency inference, supports streaming and vision |
-| Frontend       | React + TypeScript + Vite                | Minimal, fast dev loop |
+# 🧩 Core Features
 
-## Getting started
+### 📄 Document Intelligence
 
-### 1. Configure environment
+* PDF Parsing
+* OCR
+* Image Extraction
+* Table Extraction
+* Chart Detection
+* Equation Recognition
+
+---
+
+### 🔍 Semantic Search
+
+* Sentence Embeddings
+* FAISS Vector Store
+* Metadata Filtering
+* Context Retrieval
+* Source Grounding
+
+---
+
+### 🤖 AI Intelligence
+
+* Multimodal RAG
+* Vision LLM
+* Translation
+* Summarization
+* Context-Aware Answers
+* Hallucination Reduction
+
+---
+
+### ⚡ Real-Time Experience
+
+* Streaming Responses
+* WebSocket Support
+* Session History
+* Background Processing
+* Live Document Status
+
+---
+
+# 📂 Project Structure
+
+```text
+Multimodal-RAG/
+
+├── app
+│
+├── api
+├── ingestion
+├── processing
+├── rag
+├── embeddings
+├── agents
+├── llm
+├── websocket
+├── database
+├── schemas
+├── utils
+│
+├── frontend
+│
+├── storage
+│
+├── models
+│
+├── scripts
+│
+└── tests
+```
+
+---
+
+# 📊 Processing Workflow
+
+```text
+PDF Upload
+
+↓
+
+Text Extraction
+
+↓
+
+OCR (If Needed)
+
+↓
+
+Table Extraction
+
+↓
+
+Image Extraction
+
+↓
+
+Chart Detection
+
+↓
+
+Equation Detection
+
+↓
+
+Chunking
+
+↓
+
+Embedding Generation
+
+↓
+
+FAISS Indexing
+
+↓
+
+Metadata Storage
+
+↓
+
+Ready for Retrieval
+```
+
+---
+
+# 🌟 System Capabilities
+
+✔ Native PDF Understanding
+
+✔ OCR Support
+
+✔ Table Understanding
+
+✔ Image Reasoning
+
+✔ Chart Analysis
+
+✔ Graph Understanding
+
+✔ Mathematical Equation Parsing
+
+✔ Semantic Search
+
+✔ Source Attribution
+
+✔ Translation
+
+✔ Summarization
+
+✔ Vision AI
+
+✔ Streaming Chat
+
+✔ Background Processing
+
+✔ Enterprise Architecture
+
+---
+
+# 📡 REST & WebSocket APIs
+
+| Endpoint                               | Purpose                 |
+| -------------------------------------- | ----------------------- |
+| POST `/api/upload`                     | Upload PDF              |
+| GET `/api/documents`                   | List uploaded documents |
+| GET `/api/documents/{id}`              | Document details        |
+| DELETE `/api/documents/{id}`           | Delete document         |
+| POST `/api/chat`                       | Ask questions           |
+| GET `/api/chat/sessions`               | Chat sessions           |
+| GET `/api/chat/sessions/{id}/messages` | Chat history            |
+| WS `/ws/chat/{session_id}`             | Streaming AI responses  |
+| GET `/api/health`                      | System health           |
+
+---
+
+# 🧪 Testing
+
+```bash
+pytest tests -v
+```
+
+Includes
+
+* Ingestion Tests
+* Retrieval Tests
+* Embedding Tests
+* Agent Tests
+* API Tests
+* WebSocket Tests
+
+---
+
+# 🚀 Getting Started
+
+## Configure Environment
 
 ```bash
 cp .env.example .env
-# then edit .env and set GROQ_API_KEY
 ```
 
-### 2. Run with Docker Compose (recommended)
+Add your
+
+* GROQ_API_KEY
+
+---
+
+## Run with Docker
 
 ```bash
 docker compose up --build
 ```
 
-- Backend: http://localhost:8000 (docs at `/docs`)
-- Frontend: http://localhost:5173
+Backend
 
-### 3. Run locally without Docker
+```
+http://localhost:8000
+```
 
-Backend:
+Frontend
+
+```
+http://localhost:5173
+```
+
+---
+
+## Local Development
+
+### Backend
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+
 pip install -r requirements.txt
-python scripts/download_models.py     # pre-download the embedding model
+
+python scripts/download_models.py
+
 uvicorn app.main:app --reload
 ```
 
-Frontend:
+---
+
+### Frontend
 
 ```bash
 cd frontend
+
 npm install
-cp .env.example .env
+
 npm run dev
 ```
 
-### 4. Run tests
+---
 
-```bash
-pytest tests/ -v
-```
-
-## Rebuilding the FAISS index
-
-FAISS doesn't support cheap in-place deletion, so deleting documents leaves
-unreachable vectors behind. Periodically reclaim space with:
+# 🔄 Rebuilding the FAISS Index
 
 ```bash
 python scripts/build_index.py
 ```
 
-This rebuilds the index from scratch using the chunks currently in the
-database and reassigns `faiss_index` positions accordingly.
+Rebuilds the complete vector index using all currently available document chunks while reclaiming unused vector space.
 
-## Key API endpoints
+---
 
-| Method | Path                              | Description |
-|--------|------------------------------------|--------------|
-| POST   | `/api/upload`                      | Upload a PDF; ingestion runs as a background task |
-| GET    | `/api/documents`                   | List all documents and their status |
-| GET    | `/api/documents/{id}`              | Get a single document's status |
-| DELETE | `/api/documents/{id}`              | Delete a document and its chunks |
-| POST   | `/api/chat`                        | Ask a question (non-streaming) |
-| GET    | `/api/chat/sessions`                | List chat sessions |
-| GET    | `/api/chat/sessions/{id}/messages` | Get chat history for a session |
-| WS     | `/ws/chat/{session_id}`            | Streaming chat (token-by-token) |
-| GET    | `/api/health`                      | Health check |
+# 💡 Design Philosophy
 
-## Project layout
+This project demonstrates how enterprise-grade Retrieval-Augmented Generation systems should be built:
 
-See the folder tree in this repository — `app/` is organized by concern
-(api, database, ingestion, processing, embeddings, rag, agents, llm,
-websocket, utils, schemas), `frontend/` is a standalone Vite app, `storage/`
-holds uploaded files, extracted images, and the FAISS index, `models/` is
-reserved for any locally-cached model weights, and `scripts/` contains
-maintenance utilities.
+* Multimodal document understanding
+* Grounded AI responses
+* Source attribution
+* Specialized AI agents
+* Modular architecture
+* Efficient semantic retrieval
+* Streaming-first design
+* Production-ready scalability
 
-## Notes & production considerations
+---
 
-- **Database**: SQLite is the default for zero-setup local development. Swap
-  `DATABASE_URL` to a Postgres DSN (e.g. `postgresql+asyncpg://...`) for
-  production; no code changes are required.
-- **FAISS**: `IndexFlatIP` is exact (no approximation) and fine up to roughly
-  a few million vectors on a single node. For larger scale, swap in
-  `IndexIVFFlat` or `IndexHNSWFlat` inside `app/embeddings/faiss_store.py`.
-- **Secrets**: never commit a real `.env`; `.env.example` is the template.
-- **Concurrency**: the FAISS store uses a threading lock around add/search
-  since `faiss-cpu` indices are not thread-safe for concurrent writes.
+# 📈 Recruiter Highlights
+
+✔ Multimodal RAG
+
+✔ FastAPI
+
+✔ React + TypeScript
+
+✔ FAISS
+
+✔ Sentence Transformers
+
+✔ OCR
+
+✔ Computer Vision
+
+✔ Vision LLM
+
+✔ Semantic Search
+
+✔ PDF Intelligence
+
+✔ WebSockets
+
+✔ SQLAlchemy
+
+✔ Async Python
+
+✔ Enterprise Architecture
+
+✔ Source-Grounded AI
+
+✔ Streaming Responses
+
+✔ AI Agents
+
+✔ Production Deployment
+
+---
+
+<div align="center">
+
+## ⭐ If you found this project interesting, consider giving it a Star!
+
+### Designed to showcase production-grade AI engineering, multimodal retrieval, and enterprise-ready document intelligence.
+
+**Building AI systems that understand documents the way humans do—across text, images, tables, charts, and equations.**
+
+</div>
